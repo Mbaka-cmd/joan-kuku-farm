@@ -1,0 +1,6 @@
+﻿Django==4.2.7
+djangorestframework==3.14.0
+django-filter==23.5
+Pillow==10.1.0
+python-decouple==3.8
+requests==2.31.0

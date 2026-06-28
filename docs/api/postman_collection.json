@@ -1,0 +1,570 @@
+{
+  "info": {
+    "name": "Joan Kuku Farm API",
+    "description": "Complete API collection for JKF E-commerce Backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000/api",
+      "type": "string"
+    },
+    {
+      "key": "access_token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"phone_number\": \"0712345678\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"password\": \"TestPass123\",\n  \"password_confirm\": \"TestPass123\",\n  \"address\": \"123 Main St\",\n  \"city\": \"Nairobi\",\n  \"county\": \"Nairobi County\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register/",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "register", ""]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "  pm.environment.set('access_token', pm.response.json().access);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"TestPass123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login/",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login", ""]
+            }
+          }
+        },
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/profile/",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "profile", ""]
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"Jane\",\n  \"last_name\": \"Doe\",\n  \"address\": \"456 Oak Ave\",\n  \"city\": \"Nairobi\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/profile/update/",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "profile", "update", ""]
+            }
+          }
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"old_password\": \"TestPass123\",\n  \"new_password\": \"NewPass456\",\n  \"new_password_confirm\": \"NewPass456\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/password/change/",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "password", "change", ""]
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refresh\": \"your_refresh_token_here\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/logout/",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "logout", ""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "List Products",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/products/",
+              "host": ["{{base_url}}"],
+              "path": ["products", ""],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "category",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "min_price",
+                  "value": "10",
+                  "disabled": true
+                },
+                {
+                  "key": "max_price",
+                  "value": "1000",
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "eggs",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Product Detail",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/products/1/",
+              "host": ["{{base_url}}"],
+              "path": ["products", "1", ""]
+            }
+          }
+        },
+        {
+          "name": "Featured Products",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/products/featured/",
+              "host": ["{{base_url}}"],
+              "path": ["products", "featured", ""]
+            }
+          }
+        },
+        {
+          "name": "Top Rated Products",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/products/top_rated/",
+              "host": ["{{base_url}}"],
+              "path": ["products", "top_rated", ""]
+            }
+          }
+        },
+        {
+          "name": "Trending Products",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/products/trending/",
+              "host": ["{{base_url}}"],
+              "path": ["products", "trending", ""]
+            }
+          }
+        },
+        {
+          "name": "List Categories",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/products/categories/",
+              "host": ["{{base_url}}"],
+              "path": ["products", "categories", ""]
+            }
+          }
+        },
+        {
+          "name": "Product Reviews",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/products/1/reviews/",
+              "host": ["{{base_url}}"],
+              "path": ["products", "1", "reviews", ""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "List My Orders",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/orders/",
+              "host": ["{{base_url}}"],
+              "path": ["orders", ""]
+            }
+          }
+        },
+        {
+          "name": "Create Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"product_id\": 1,\n      \"quantity\": 5\n    },\n    {\n      \"product_id\": 2,\n      \"quantity\": 10\n    }\n  ],\n  \"delivery_phone\": \"0712345678\",\n  \"delivery_address\": \"123 Main Street\",\n  \"delivery_city\": \"Nairobi\",\n  \"delivery_county\": \"Nairobi County\",\n  \"delivery_postal_code\": \"00100\",\n  \"delivery_instructions\": \"Please leave at gate\",\n  \"payment_method\": \"mpesa\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/orders/",
+              "host": ["{{base_url}}"],
+              "path": ["orders", ""]
+            }
+          }
+        },
+        {
+          "name": "Get Order Detail",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/orders/1/",
+              "host": ["{{base_url}}"],
+              "path": ["orders", "1", ""]
+            }
+          }
+        },
+        {
+          "name": "Track Order",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/orders/track/JKF-20240101-ABC123/",
+              "host": ["{{base_url}}"],
+              "path": ["orders", "track", "JKF-20240101-ABC123", ""]
+            }
+          }
+        },
+        {
+          "name": "Cancel Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Customer requested cancellation\",\n  \"details\": \"No longer needed\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/orders/1/cancel/",
+              "host": ["{{base_url}}"],
+              "path": ["orders", "1", "cancel", ""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {
+          "name": "Initiate M-Pesa Payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order_id\": 1,\n  \"phone_number\": \"0712345678\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/payments/mpesa/initiate/",
+              "host": ["{{base_url}}"],
+              "path": ["payments", "mpesa", "initiate", ""]
+            }
+          }
+        },
+        {
+          "name": "Check Payment Status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/payments/status/1/",
+              "host": ["{{base_url}}"],
+              "path": ["payments", "status", "1", ""]
+            }
+          }
+        },
+        {
+          "name": "Initiate Refund",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"payment_id\": 1,\n  \"amount\": 1000.00,\n  \"reason\": \"Customer requested refund\",\n  \"notes\": \"Full refund\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/payments/refund/initiate/",
+              "host": ["{{base_url}}"],
+              "path": ["payments", "refund", "initiate", ""]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Analytics",
+      "item": [
+        {
+          "name": "Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/analytics/dashboard/",
+              "host": ["{{base_url}}"],
+              "path": ["analytics", "dashboard", ""]
+            }
+          }
+        },
+        {
+          "name": "Orders Analytics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/analytics/orders/",
+              "host": ["{{base_url}}"],
+              "path": ["analytics", "orders", ""]
+            }
+          }
+        },
+        {
+          "name": "Revenue Analytics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/analytics/revenue/",
+              "host": ["{{base_url}}"],
+              "path": ["analytics", "revenue", ""]
+            }
+          }
+        },
+        {
+          "name": "Products Analytics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/analytics/products/",
+              "host": ["{{base_url}}"],
+              "path": ["analytics", "products", ""]
+            }
+          }
+        },
+        {
+          "name": "Customers Analytics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/analytics/customers/",
+              "host": ["{{base_url}}"],
+              "path": ["analytics", "customers", ""]
+            }
+          }
+        },
+        {
+          "name": "Sales Report",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/analytics/sales-report/?start_date=2024-01-01&end_date=2024-01-31",
+              "host": ["{{base_url}}"],
+              "path": ["analytics", "sales-report", ""],
+              "query": [
+                {
+                  "key": "start_date",
+                  "value": "2024-01-01"
+                },
+                {
+                  "key": "end_date",
+                  "value": "2024-01-31"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
