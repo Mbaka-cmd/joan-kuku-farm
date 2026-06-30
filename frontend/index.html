@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joan Kuku Farm - Premium Poultry & Fresh Eggs | Nairobi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1E5631;
+            --secondary: #F4A825;
+            --text: #2D2D2D;
+            --muted: #6B7280;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* STICKY BUTTONS */
+        .sticky-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 20px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .sticky-whatsapp, .sticky-call {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .sticky-whatsapp {
+            background: #25D366;
+        }
+
+        .sticky-whatsapp:hover {
+            transform: scale(1.12);
+        }
+
+        .sticky-call {
+            background: var(--secondary);
+        }
+
+        .sticky-call:hover {
+            transform: scale(1.12);
+        }
+
+        /* HEADER */
+        header {
+            background: white;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--secondary);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: #d68a1a;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+        }
+
+        /* HERO - now supports a real photo (see image slot comment below) */
+        .hero {
+            background: linear-gradient(135deg, #1E5631 0%, #27703d 100%);
+            color: white;
+            padding: 160px 0;
+            text-align: center;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-image-wrap {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(30, 86, 49, 0.65), rgba(30, 86, 49, 0.75));
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            background: rgba(244, 168, 37, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .hero-content h1 {
+            font-size: 72px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #d68a1a;
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* TRUST STRIP */
+        .trust-strip {
+            background: white;
+            padding: 50px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .trust-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .trust-item p {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 15px;
+        }
+
+        /* PRODUCTS SECTION */
+        .products-section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: var(--muted);
+            margin-bottom: 60px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            transition: all 0.4s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            background: linear-gradient(135deg, #1E5631 0%, #27703d 100%);
+            height: 240px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-icon-fallback {
+            display: none;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .product-content {
+            padding: 35px;
+        }
+
+        .product-name {
+            font-size: 22px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .product-description {
+            font-size: 15px;
+            color: var(--muted);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .product-card .btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* STATS SECTION */
+        .stats-section {
+            background: linear-gradient(135deg, #1E5631 0%, #27703d 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-top: 60px;
+        }
+
+        .stat-item h3 {
+            font-size: 56px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* GALLERY SECTION */
+        .gallery-section {
+            padding: 100px 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 60px;
+        }
+
+        .gallery-item {
+            background: linear-gradient(135deg, #1E5631 0%, #27703d 100%);
+            height: 280px;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 30px 20px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* ABOUT SECTION */
+        .about-section {
+            padding: 100px 0;
+            background: #f9f9f9;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 42px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            color: var(--muted);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, #1E5631 0%, #27703d 100%);
+            height: 400px;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* TESTIMONIALS */
+        .testimonials-section {
+            padding: 100px 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .stars {
+            color: var(--secondary);
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-text {
+            font-size: 15px;
+            color: var(--text);
+            line-height: 1.7;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 14px;
+        }
+
+        /* CTA SECTION */
+        .cta-section {
+            background: linear-gradient(135deg, #1E5631 0%, #27703d 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 42px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #2D2D2D;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-section p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .hero-content h1 {
+                font-size: 52px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .stat-item h3 {
+                font-size: 42px;
+            }
+
+            .cta-section h2 {
+                font-size: 32px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-buttons .btn {
+                width: 100%;
+            }
+
+            .sticky-buttons {
+                bottom: 20px;
+                right: 15px;
+            }
+
+            .sticky-whatsapp, .sticky-call {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- STICKY BUTTONS -->
+    <a href="https://wa.me/254726306005" class="sticky-whatsapp" title="Chat on WhatsApp">💬</a>
+    <a href="tel:0726306005" class="sticky-call" title="Call Now">☎</a>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">Joan Kuku Farm</div>
+                <ul class="nav-menu">
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                </ul>
+                <a href="https://wa.me/254726306005" class="nav-cta">Order Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <!-- IMAGE SLOT: add a file named exactly "joan kuku farm hero.jpg" next to this file for a real photo background -->
+        <div class="hero-image-wrap">
+            <img src="./joan kuku farm hero.jpg" alt="Joan Kuku Farm" onerror="this.style.display='none';">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">Premium Poultry Farming Since 2014</div>
+                <h1>Healthy Birds. Better Profits. Every Time.</h1>
+                <p>From day-old chicks to mature birds, fresh eggs, poultry feeds, and expert farming support, Joan Kuku Farm helps farmers succeed with quality they can trust.</p>
+                <div class="hero-buttons">
+                    <a href="https://wa.me/254726306005" class="btn btn-primary">Order via WhatsApp</a>
+                    <a href="#products" class="btn btn-secondary">View Products</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST STRIP -->
+    <section class="trust-strip">
+        <div class="container">
+            <div class="trust-items">
+                <div class="trust-item"><p>✓ Healthy Birds</p></div>
+                <div class="trust-item"><p>✓ Vaccinated Stock</p></div>
+                <div class="trust-item"><p>✓ Farm Fresh Eggs</p></div>
+                <div class="trust-item"><p>✓ Quality Feeds</p></div>
+                <div class="trust-item"><p>✓ Reliable Delivery</p></div>
+                <div class="trust-item"><p>✓ Expert Support</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="products-section" id="products">
+        <div class="container">
+            <h2 class="section-title">Our Products</h2>
+            <p class="section-subtitle">Premium quality poultry for your farming success</p>
+
+            <div class="products-grid">
+                <!-- IMAGE SLOT: "joan kuku broilers.jpg" -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="./joan kuku broilers.jpg" alt="Broilers" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="product-icon-fallback">🐓</div>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-name">Broilers</div>
+                        <p class="product-description">Healthy meat birds raised with proper nutrition and veterinary care for optimal growth and quality.</p>
+                        <a href="https://wa.me/254726306005" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- IMAGE SLOT: "joan kuku layers.jpg" -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="./joan kuku layers.jpg" alt="Layers" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="product-icon-fallback">🐔</div>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-name">Layers</div>
+                        <p class="product-description">Productive egg-laying birds with excellent performance and reliable daily production capacity.</p>
+                        <a href="https://wa.me/254726306005" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- IMAGE SLOT: "joan kuku chicks.jpg" -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="./joan kuku chicks.jpg" alt="Day-Old Chicks" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="product-icon-fallback">🐥</div>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-name">Day-Old Chicks</div>
+                        <p class="product-description">Strong, healthy chicks ready for successful farming with excellent survival and growth rates.</p>
+                        <a href="https://wa.me/254726306005" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+
+                <!-- IMAGE SLOT: "joan kuku eggs.jpg" -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="./joan kuku eggs.jpg" alt="Fresh Eggs" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="product-icon-fallback">🥚</div>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-name">Fresh Eggs</div>
+                        <p class="product-description">Farm-fresh quality eggs supplied daily with guaranteed freshness and nutritional excellence.</p>
+                        <a href="https://wa.me/254726306005" class="btn btn-primary">Order Now</a>
+                    </div>
+                </div>
+
+                <!-- IMAGE SLOT: "joan kuku feeds.jpg" -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="./joan kuku feeds.jpg" alt="Poultry Feeds" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="product-icon-fallback">🌾</div>
+                    </div>
+                    <div class="product-content">
+                        <div class="product-name">Poultry Feeds</div>
+                        <p class="product-description">Quality nutrition for every growth stage ensuring optimal bird health and maximum productivity.</p>
+                        <a href="https://wa.me/254726306005" class="btn btn-primary">View Products</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Joan Kuku Farm in Numbers</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>10+</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5000+</h3>
+                    <p>Healthy Birds Raised</p>
+                </div>
+                <div class="stat-item">
+                    <h3>1200+</h3>
+                    <p>Happy Customers</p>
+                </div>
+                <div class="stat-item">
+                    <h3>98%</h3>
+                    <p>Customer Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Joan Kuku Farm</h2>
+                    <p>Joan Kuku Farm is committed to supplying healthy poultry, quality feeds, fresh eggs, and professional poultry farming support. With over a decade of experience, we've helped hundreds of farmers build profitable and sustainable poultry businesses.</p>
+                    <p>Our mission is to empower farmers with premium poultry products and expert guidance. We believe in sustainable farming practices, animal welfare, and building long-term relationships with our customers.</p>
+                    <p>Every bird that leaves our farm is a reflection of our commitment to excellence. When you choose Joan Kuku Farm, you're choosing a partner in your farming success.</p>
+                </div>
+                <!-- IMAGE SLOT: "joan kuku farm about.jpg" -->
+                <div class="about-image">
+                    <img src="./joan kuku farm about.jpg" alt="Joan Kuku Farm" onerror="this.style.display='none';">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Farm Gallery</h2>
+            <p class="section-subtitle">See our farm operations in action</p>
+
+            <div class="gallery-grid">
+                <!-- IMAGE SLOT: "joan kuku broiler birds.jpg" -->
+                <div class="gallery-item">
+                    <img src="./joan kuku broiler birds.jpg" alt="Healthy Broiler Birds" onerror="this.style.display='none';">
+                    <div class="gallery-caption">Healthy Broiler Birds</div>
+                </div>
+                <!-- IMAGE SLOT: "joan kuku poultry houses.jpg" -->
+                <div class="gallery-item">
+                    <img src="./joan kuku poultry houses.jpg" alt="Modern Poultry Houses" onerror="this.style.display='none';">
+                    <div class="gallery-caption">Modern Poultry Houses</div>
+                </div>
+                <!-- IMAGE SLOT: "joan kuku eggs collection.jpg" -->
+                <div class="gallery-item">
+                    <img src="./joan kuku eggs collection.jpg" alt="Farm Fresh Eggs Collection" onerror="this.style.display='none';">
+                    <div class="gallery-caption">Farm Fresh Eggs Collection</div>
+                </div>
+                <!-- IMAGE SLOT: "joan kuku farm team.jpg" -->
+                <div class="gallery-item">
+                    <img src="./joan kuku farm team.jpg" alt="Expert Farm Team" onerror="this.style.display='none';">
+                    <div class="gallery-caption">Expert Farm Team</div>
+                </div>
+                <!-- IMAGE SLOT: "joan kuku feed delivery.jpg" -->
+                <div class="gallery-item">
+                    <img src="./joan kuku feed delivery.jpg" alt="Quality Feed Delivery" onerror="this.style.display='none';">
+                    <div class="gallery-caption">Quality Feed Delivery</div>
+                </div>
+                <!-- IMAGE SLOT: "joan kuku happy customers.jpg" -->
+                <div class="gallery-item">
+                    <img src="./joan kuku happy customers.jpg" alt="Happy Customers" onerror="this.style.display='none';">
+                    <div class="gallery-caption">Happy Customers</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <p class="section-subtitle">Real feedback from farmers who trust Joan Kuku Farm</p>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Healthy chicks, excellent customer service, and reliable delivery. Joan Kuku Farm has been my trusted partner for the past three years."</p>
+                    <p class="testimonial-author">- James Kipchoge, Farmer</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"The birds arrived healthy and are growing exceptionally well. The team provided excellent guidance on farm management."</p>
+                    <p class="testimonial-author">- Sarah Mwangi, Agribusiness</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Highly recommend Joan Kuku Farm. Best prices, best birds, and best support in the market. They really care about your success."</p>
+                    <p class="testimonial-author">- Peter Omondi, Farm Manager</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Start or Expand Your Poultry Business?</h2>
+            <p>Talk to our team today and get quality poultry products delivered with confidence.</p>
+            <div class="cta-buttons">
+                <a href="https://wa.me/254726306005" class="btn btn-primary">Chat on WhatsApp</a>
+                <a href="tel:0726306005" class="btn btn-secondary">Call Now: 0726306005</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Joan Kuku Farm</h3>
+                    <p>Premium poultry products and expert farming support for successful poultry businesses across Kenya.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#products">Products</a>
+                    <a href="#about">About Us</a>
+                    <a href="#testimonials">Testimonials</a>
+                    <a href="#gallery">Gallery</a>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <p>Phone: <a href="tel:0726306005">0726306005</a></p>
+                    <p>Email: <a href="mailto:joanwapolly@gmail.com">joanwapolly@gmail.com</a></p>
+                    <p>Location: Nairobi, Kenya</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Business Hours</h3>
+                    <p>Monday - Friday: 8:00 AM - 5:00 PM</p>
+                    <p>Saturday: 9:00 AM - 3:00 PM</p>
+                    <p>Sunday: Closed</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 Joan Kuku Farm. All rights reserved. | Premium Poultry Products & Expert Farming Support</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
