@@ -26,6 +26,10 @@
             --font-body: 'Inter', sans-serif;
         }
 
+        h1, h2, h3, .hero-content h1, .section-title {
+            font-optical-sizing: auto;
+        }
+
         html { scroll-behavior: smooth; }
 
         body {
@@ -217,6 +221,7 @@
             font-weight: 700;
             margin-bottom: 20px;
             line-height: 1.15;
+            letter-spacing: -0.01em;
         }
 
         .hero-content p {
@@ -1040,7 +1045,7 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-badge">Premium Poultry Farming Since 2022</div>
-                <h1>Healthy Birds. Trusted Quality. Better Farming.</h1>
+                <h1>Healthy Birds. <em style="font-style:italic;color:#F4A825;">Trusted Quality.</em> Better Farming.</h1>
                 <p>From day-old chicks to mature birds, fresh eggs, poultry feeds, and expert farming support, Joan Kuku Farm helps farmers succeed with quality they can trust.</p>
                 <div class="hero-buttons">
                     <a href="https://wa.me/254726306005" class="btn btn-primary">Order via WhatsApp</a>
