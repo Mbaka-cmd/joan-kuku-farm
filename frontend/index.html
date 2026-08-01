@@ -1168,6 +1168,7 @@
                     <div class="product-content">
                         <div class="product-name">Poultry Feeds</div>
                         <p class="product-description">Quality nutrition for every growth stage ensuring optimal bird health and maximum productivity.</p>
+                        <p class="product-price">Contact for Current Pricing</p>
                         <div class="product-order-row">
                             <div class="qty-stepper">
                                 <button type="button" onclick="changeQty('feeds', -1)">-</button>
@@ -1187,7 +1188,7 @@
                         <div class="product-icon-fallback">🐓</div>
                     </div>
                     <div class="product-content">
-                        <div class="product-name">Cock</div>
+                        <div class="product-name">Breeding Cocks</div>
                         <p class="product-description">Strong, mature cocks for breeding and stock improvement.</p>
                         <p class="product-price">KSh 1,200 - 1,500</p>
                         <div class="product-order-row">
@@ -1196,7 +1197,7 @@
                                 <input type="number" id="qty-cock" value="0" min="0" readonly>
                                 <button type="button" onclick="changeQty('cock', 1)">+</button>
                             </div>
-                            <button type="button" class="product-add-btn" onclick="addToCart('cock', 'Cock', 'birds')">Add to Cart</button>
+                            <button type="button" class="product-add-btn" onclick="addToCart('cock', 'Breeding Cocks', 'birds')">Add to Cart</button>
                         </div>
                         <p class="product-unit-note">Priced per bird</p>
                     </div>
@@ -1400,7 +1401,8 @@
 
     <!-- CART FLOATING BUTTON -->
     <button class="cart-fab" id="cartFabBtn" aria-label="View cart">
-        🛒
+        <img src="./cart-icon.png" alt="Cart" style="width:24px;height:24px;">
+        <span style="margin-left:6px;font-weight:600;font-size:14px;">View Cart</span>
         <span class="cart-badge" id="cartBadge">0</span>
     </button>
 
